@@ -40,10 +40,20 @@ class MainActivity : AppCompatActivity() {
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 viewPager2.currentItem = p0!!.position
             }
+
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
         })
 
+        // format the behave of viewpage with the tabLayout
+        viewPager2.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    tabLayout.getTabAt(position)?.select()
+                }
+            }
+        )
 
     }
 }
